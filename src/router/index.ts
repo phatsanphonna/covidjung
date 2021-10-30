@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import Home from '../views/Home.view.vue'
-import Answer from '../views/Answer.view.vue'
+import ATKQuestion from '../views/ATKQuestion.view.vue'
+import ATKResult from '../views/ATKResult.view.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -9,9 +11,14 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/answer',
-    name: 'Answer',
-    component: Answer
+    path: '/atk/question',
+    name: 'ATKQuestion',
+    component: ATKQuestion
+  },
+  {
+    path: '/atk/result',
+    name: 'ATKResult',
+    component: ATKResult
   }
 ]
 

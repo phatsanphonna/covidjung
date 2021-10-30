@@ -8,18 +8,6 @@
         <p class="space-around" v-else-if="clickState === 1">
           อย่ากังวลนะ เราจะช่วยคุณเอง
         </p>
-        <p class="space-around" v-else-if="clickState === 2">
-          ได้ตรวจ ATK มารึยัง
-        </p>
-      </div>
-
-      <div class="question space-around" v-if="clickState === 2">
-        <button class="yes-card" @click="() => handleRedirect(1)">
-          ยังเลย
-        </button>
-        <button class="no-card" @click="() => handleRedirect(0)">
-          ตรวจแล้ว
-        </button>
       </div>
     </div>
   </div>
@@ -29,6 +17,7 @@
 import { defineComponent } from "vue";
 
 import Mascot from "@/components/Mascot.component.vue";
+
 export default defineComponent({
   name: "Home",
   components: { Mascot },
@@ -40,13 +29,11 @@ export default defineComponent({
 
   methods: {
     handleClick() {
-      if (this.clickState != 2) {
-        this.clickState++;
-      }
-    },
+      this.clickState++;
 
-    handleRedirect(answer: number) {
-      this.$router.push(`/answer?answer=${answer}`);
+      if (this.clickState >= 2) {
+        this.$router.push(`/atk/question`);
+      }
     },
   },
 });
@@ -54,7 +41,7 @@ export default defineComponent({
 
 <style scoped>
 .Home {
-  @apply bg-yellow-200;
+  @apply bg-gradient-to-b from-yellow-200 to-yellow-300;
 }
 
 .space-around {
@@ -67,23 +54,5 @@ export default defineComponent({
 
 .question {
   display: inline-block !important;
-}
-
-.yes-card,
-.no-card {
-  text-align: center;
-  margin: 0px 10px;
-  width: 120px;
-  height: 60px;
-
-  @apply rounded-md shadow-md text-white;
-}
-
-.yes-card {
-  @apply bg-green-500;
-}
-
-.no-card {
-  @apply bg-red-500;
 }
 </style>
